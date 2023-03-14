@@ -17,7 +17,7 @@ export class PostsService {
     }
 
     fetchPosts() {
-        this.http.get<{[key: string]: Post}>('https://atcg-httpbackend-default-rtdb.europe-west1.firebasedatabase.app/posts.json').pipe(map(responseData => {
+       return this.http.get<{[key: string]: Post}>('https://atcg-httpbackend-default-rtdb.europe-west1.firebasedatabase.app/posts.json').pipe(map(responseData => {
       const postsArray: Post[] = [];
       for (const key in responseData) {
         if (responseData.hasOwnProperty(key)) {
@@ -25,7 +25,6 @@ export class PostsService {
         }
       }
       return postsArray;
-    })).subscribe(posts => {
-    });
+    }));
     }
 }
