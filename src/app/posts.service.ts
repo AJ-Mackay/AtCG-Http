@@ -27,4 +27,8 @@ export class PostsService {
       return postsArray;
     }));
     }
+
+    deletePosts() {
+       return this.http.delete('https://atcg-httpbackend-default-rtdb.europe-west1.firebasedatabase.app/posts.json');
+    }
 }
