@@ -21,9 +21,11 @@ export class PostsService {
     }
 
     fetchPosts() {
+        let searchParams = new HttpParams();
+        searchParams = searchParams.append('print', 'pretty');
        return this.http.get<{[key: string]: Post}>('https://atcg-httpbackend-default-rtdb.europe-west1.firebasedatabase.app/posts.json', {
         headers: new HttpHeaders({'Custom-Header': 'Hello'}),
-        params: new HttpParams().set('print', 'pretty')
+        params: searchParams
        }).pipe(map(responseData => {
       const postsArray: Post[] = [];
       for (const key in responseData) {
