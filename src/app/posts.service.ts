@@ -27,7 +27,8 @@ export class PostsService {
         searchParams = searchParams.append('print', 'pretty');
        return this.http.get<{[key: string]: Post}>('https://atcg-httpbackend-default-rtdb.europe-west1.firebasedatabase.app/posts.json', {
         headers: new HttpHeaders({'Custom-Header': 'Hello'}),
-        params: searchParams
+        params: searchParams,
+        responseType: 'json'
        }).pipe(map(responseData => {
       const postsArray: Post[] = [];
       for (const key in responseData) {
@@ -44,7 +45,8 @@ export class PostsService {
 
     deletePosts() {
        return this.http.delete('https://atcg-httpbackend-default-rtdb.europe-west1.firebasedatabase.app/posts.json', {
-        observe: 'events'
+        observe: 'events',
+        responseType: 'text'
        }).pipe(tap(event => {
         console.log(event);
         if (event.type === HttpEventType.Sent) {
